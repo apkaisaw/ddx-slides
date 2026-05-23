@@ -7,7 +7,7 @@ We pay open-weight models for one thing only — turning a natural-language inst
 | | |
 |---|---|
 | **Subnet** | DDX · sn-32 |
-| **Mechanism** | Defektr-class |
+| **Mechanism** | Yuma trimmed-mean · stake-weighted consensus |
 | **Benchmarks** | ScreenSpot · ScreenSpot-Pro · Mind2Web |
 | **Team** | Drew Mimi · Keith Guo |
 | **Status** | Hackathon submission · 48-hour build |
@@ -26,7 +26,7 @@ Computer-use agents don't fail at reasoning. They fail at finding the pixel.
 
 ## Mechanism — one epoch, end-to-end
 
-Defektr-class loop. Proven, low-novelty, low surface area to game. Every stage is deterministic and reproducible on a held-out hash.
+Standard Bittensor consensus — stake-weighted Yuma trimmed mean, low-novelty, low surface area to game. Every stage is deterministic and reproducible on a held-out hash.
 
 1. **Sample** — validator draws a held-out batch (256 prompts per epoch, rotated from a sealed 8,400-prompt pool covering ScreenSpot, ScreenSpot-Pro, and Mind2Web fragments).
 2. **Query** — miners receive `prompt + screenshot (1920×1080) + seed`. They return one bounding box and a confidence score.
@@ -80,7 +80,7 @@ Standard 18 / 41 / 41 split. Miner share routes 100% to held-out accuracy. No of
 
 ## Precedent
 
-Defektr (sn-25) proved that benchmark-scored, IoU-gated subnets can sustain a healthy miner population for 9+ months (247 active miners, zero mechanism rewrites). DDX is the same shape, with grounding as the target. We tuned three constants — not the architecture.
+Standard Bittensor consensus: stake-weighted Yuma trimmed mean, power-law emissions, sealed held-out scoring. The commercial pattern is proven by **Score Vision (SN44)** — a deployed Bittensor vision subnet running a submission-and-scoring marketplace since 2024, with ~$3M enterprise ARR across 7 clients (avg contract $428K). Different domain (sports video analysis), same architectural pattern as DDX. Proof that decentralized vision marketplaces convert technical progress into enterprise revenue.
 
 ## 12-week roadmap
 
@@ -101,7 +101,7 @@ Defektr (sn-25) proved that benchmark-scored, IoU-gated subnets can sustain a he
 From this hackathon, we need:
 
 - Bittensor Foundation — sn-32 registration green-light
-- Defektr ops — adversarial review of the scoring loop
+- Score Vision ops — adversarial review of the scoring loop
 - 4 launch validators with >500 TAO stake
 - Intros to UI-TARS, OS-Atlas, ShowUI teams as launch miners
 - $50k to fund 8 weeks of validator infra + adversarial audit
