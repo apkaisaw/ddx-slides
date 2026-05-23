@@ -1,0 +1,67 @@
+flowchart TB
+    classDef trigger fill:#4c1d95,stroke:#a78bfa,color:#fff
+    classDef validator fill:#1d4ed8,stroke:#93c5fd,color:#fff
+    classDef scoring fill:#065f46,stroke:#6ee7b7,color:#fff
+    classDef decision fill:#b45309,stroke:#fcd34d,color:#fff
+    classDef terminal fill:#9f1239,stroke:#fda4af,color:#fff
+    classDef chain fill:#374151,stroke:#9ca3af,color:#fff
+
+    START(["Epoch boundary<br/>~360 blocks / ~1 hour"]):::trigger
+
+    SEED["Derive epoch seed<br/>from block hash"]:::trigger
+
+    SAMPLE["Sample 200 images<br/>50% ScreenSpot-Pro<br/>20% ScreenSpot-v2<br/>20% OSWorld-G<br/>10% held-out captures"]:::validator
+
+    AUG["Apply augmentations<br/>to 20% subset<br/>resolution, theme,<br/>font scale, language"]:::validator
+
+    DL["Download all active<br/>miner models from HF<br/>verified by on-chain hash"]:::validator
+
+    RUN["Run each model<br/>on reference hardware<br/>RTX 4090, 24GB VRAM"]:::validator
+
+    ACC["Measure accuracy<br/>click-within-bbox rate"]:::scoring
+    LAT["Measure latency<br/>mean wall-clock ms"]:::scoring
+    ROB["Measure robustness<br/>worst-case across<br/>augmented variants"]:::scoring
+
+    GATE{"Accuracy &gt; 0.5?"}:::decision
+
+    ZERO["S_latency = 0<br/>S_robustness = 0"]:::terminal
+
+    COMP["Composite score<br/>W = 0.60·acc + 0.15·lat + 0.25·rob"]:::scoring
+
+    SIM{"Output similarity<br/>vs other miners<br/>&gt; 0.99?"}:::decision
+
+    FLAG["Flag for pruning<br/>later-registered miner"]:::terminal
+
+    NORM["Normalize weight<br/>vector across miners<br/>apply k=3 exponent"]:::scoring
+
+    SUBMIT["Submit weights<br/>via set_weights()"]:::validator
+
+    YUMA["Yuma Consensus<br/>stake-weighted<br/>trimmed mean<br/>across validators"]:::chain
+
+    EMIT["TAO emissions<br/>flow per consensus<br/>weights"]:::chain
+
+    LOOP(["Next epoch"]):::trigger
+
+    START --> SEED
+    SEED --> SAMPLE
+    SAMPLE --> AUG
+    AUG --> DL
+    DL --> RUN
+    RUN --> ACC
+    RUN --> LAT
+    RUN --> ROB
+    ACC --> GATE
+    GATE -->|No| ZERO
+    GATE -->|Yes| COMP
+    ZERO --> COMP
+    LAT --> COMP
+    ROB --> COMP
+    COMP --> SIM
+    SIM -->|Yes| FLAG
+    SIM -->|No| NORM
+    FLAG --> NORM
+    NORM --> SUBMIT
+    SUBMIT --> YUMA
+    YUMA --> EMIT
+    EMIT --> LOOP
+    LOOP --> START
