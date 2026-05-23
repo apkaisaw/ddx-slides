@@ -7,10 +7,10 @@ flowchart TB
     classDef storage fill:#374151,stroke:#9ca3af,color:#fff
 
     subgraph External["External Benchmarks & Data"]
-        SP["ScreenSpot-Pro<br/>~1,500 images"]:::external
-        SP2["ScreenSpot-v2<br/>~1,200 images"]:::external
-        OSW["OSWorld-G<br/>held-out tasks"]:::external
-        HOC["Held-out captures<br/>rotating apps"]:::external
+        UIV["UI-Vision<br/>83 apps · 7,500+ tasks<br/>weight 0.40"]:::external
+        OSW["OSWorld-G<br/>564 fine-grained tasks<br/>weight 0.30"]:::external
+        SP["ScreenSpot-Pro<br/>1,581 instances · 4K<br/>weight 0.15"]:::external
+        HOC["Held-out captures<br/>rotating apps · weekly<br/>weight 0.15"]:::external
     end
 
     subgraph Miners["Miner Layer"]
@@ -30,7 +30,8 @@ flowchart TB
     subgraph Chain["Bittensor Blockchain"]
         ST["Subtensor<br/>metagraph + stake"]:::chain
         YC["Yuma Consensus<br/>aggregate weights"]:::chain
-        EM["TAO Emissions<br/>41% miners | 41% validators | 18% owner"]:::chain
+        TF["Taoflow<br/>inter-subnet allocation<br/>net TAO flow · Nov 2025"]:::chain
+        EM["Alpha Emissions<br/>41% miners | 41% validators | 18% owner"]:::chain
     end
 
     subgraph Consumers["Agent Developer Layer"]
@@ -46,17 +47,17 @@ flowchart TB
     HF -->|download by hash| V2
     HF -->|download by hash| V3
 
-    SP --> V1
-    SP2 --> V1
+    UIV --> V1
     OSW --> V1
+    SP --> V1
     HOC --> V1
-    SP --> V2
-    SP2 --> V2
+    UIV --> V2
     OSW --> V2
+    SP --> V2
     HOC --> V2
-    SP --> V3
-    SP2 --> V3
+    UIV --> V3
     OSW --> V3
+    SP --> V3
     HOC --> V3
 
     V1 -->|weight vector| YC
@@ -64,6 +65,7 @@ flowchart TB
     V3 -->|weight vector| YC
 
     ST <--> YC
+    TF -->|net TAO flow gates emission share| EM
     YC --> EM
 
     EM -->|41%| M1
