@@ -93,8 +93,8 @@ Defektr (sn-25) proved that benchmark-scored, IoU-gated subnets can sustain a he
 
 ## Team
 
-- **Drew Mimi** ([@koolamusic](https://github.com/koolamusic)) — mechanism · validator. Owns the validator binary, the scoring function, and the anti-gaming surface.
-- **Keith Guo** ([@apkaisaw](https://github.com/apkaisaw)) — models · miner stack. Owns the baseline miner, the training data pipeline, and the open-weights release cadence.
+- **Drew Mimi** · GitHub [@koolamusic](https://github.com/koolamusic) · X [@letandrewcook](https://x.com/letandrewcook) — mechanism · validator. Owns the validator binary, the scoring function, and the anti-gaming surface.
+- **Keith Guo** · GitHub [@apkaisaw](https://github.com/apkaisaw) · X [@apkaisaw](https://x.com/apkaisaw) — models · miner stack. Owns the baseline miner, the training data pipeline, and the open-weights release cadence.
 
 ## Ask
 
