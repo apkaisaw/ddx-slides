@@ -1,4 +1,4 @@
-# DDX · Subnet 32
+# DDX
 
 **A Bittensor subnet that makes computer-use agents accurate enough to ship.**
 
@@ -6,7 +6,7 @@ We pay open-weight models for one thing only — turning a natural-language inst
 
 | | |
 |---|---|
-| **Subnet** | DDX · sn-32 |
+| **Subnet** | DDX · next available netuid |
 | **Mechanism** | Yuma trimmed-mean · stake-weighted consensus |
 | **Benchmarks** | ScreenSpot · ScreenSpot-Pro · Mind2Web |
 | **Team** | Drew Mimi · Keith Guo |
@@ -61,7 +61,7 @@ A boring score is a robust score. Three components — IoU, a hard gate, a laten
 | Weight | Benchmark | Source | Notes |
 |---:|---|---|---|
 | 0.40 | **ScreenSpot** | Cheng et al. 2024 · 1,272 instances | Mobile, desktop, web. Canonical entry. UI-TARS-7B baseline: 89.5%. |
-| 0.35 | **ScreenSpot-Pro** | Li et al. 2025 · 1,581 high-res instances | Photoshop, AutoCAD, Blender, Premiere. 4K. Best published: 23.4% — where capability moats show. |
+| 0.35 | **ScreenSpot-Pro** | Li et al. 2025 · 1,581 high-res instances | Photoshop, AutoCAD, Blender, Premiere. 4K. Best published: 61.6% (UI-TARS-1.5), up from 23.4% at release — a fast-moving moat. |
 | 0.25 | **Mind2Web-fragments** | Deng et al. · web fragments | Single-step grounding only. Long-tail composite coverage. |
 
 v1.1 adds VisualWebArena fragments (0.10) and a private DDX-generated set (0.10) once 50 validators are live. Weights are governed by stake vote.
@@ -80,7 +80,7 @@ Standard 18 / 41 / 41 split. Miner share routes 100% to held-out accuracy. No of
 
 ## Precedent
 
-Standard Bittensor consensus: stake-weighted Yuma trimmed mean, power-law emissions, sealed held-out scoring. The commercial pattern is proven by **Score Vision (SN44)** — a deployed Bittensor vision subnet running a submission-and-scoring marketplace since 2024, with ~$3M enterprise ARR across 7 clients (avg contract $428K). Different domain (sports video analysis), same architectural pattern as DDX. Proof that decentralized vision marketplaces convert technical progress into enterprise revenue.
+Standard Bittensor consensus: stake-weighted Yuma trimmed mean, power-law emissions, sealed held-out scoring. The commercial pattern is proven by **Score Vision (SN44)** — a deployed Bittensor vision subnet (netuid 44) running a submission-and-scoring marketplace with real enterprise clients. Different domain (sports video analysis), same architectural pattern as DDX. Proof that decentralized vision marketplaces convert technical progress into enterprise revenue.
 
 ## 12-week roadmap
 
@@ -88,23 +88,13 @@ Standard Bittensor consensus: stake-weighted Yuma trimmed mean, power-law emissi
 |---|---|---|
 | **Week 0 — Hackathon** | May 23 – May 26 | Validator binary v0.3 · live dashboard · baseline miner reproducing UI-TARS-7B · deck + stage demo |
 | **Phase 1 — Testnet** | Weeks 1–4 | Add SS-Pro + M2W · 8 testnet validators · 25 testnet miners · adversarial review |
-| **Phase 2 — Mainnet** | Weeks 5–8 | Register sn-32 · migrate held-out pool · stake-weighted quorum · public leaderboard |
+| **Phase 2 — Mainnet** | Weeks 5–8 | Register subnet (lock cost · netuid assigned on registration) · migrate held-out pool · stake-weighted quorum · public leaderboard |
 | **Phase 3 — Ecosystem** | Weeks 9–12 | HTTP grounding API · first 3 paying users · v1.1 weight vote · 50-validator decentralization milestone |
 
 ## Team
 
 - **Drew Mimi** · GitHub [@koolamusic](https://github.com/koolamusic) · X [@letandrewcook](https://x.com/letandrewcook) — mechanism · validator. Owns the validator binary, the scoring function, and the anti-gaming surface.
 - **Keith Guo** · GitHub [@apkaisaw](https://github.com/apkaisaw) · X [@apkaisaw](https://x.com/apkaisaw) — models · miner stack. Owns the baseline miner, the training data pipeline, and the open-weights release cadence.
-
-## Ask
-
-From this hackathon, we need:
-
-- Bittensor Foundation — sn-32 registration green-light
-- Score Vision ops — adversarial review of the scoring loop
-- 4 launch validators with >500 TAO stake
-- Intros to UI-TARS, OS-Atlas, ShowUI teams as launch miners
-- $50k to fund 8 weeks of validator infra + adversarial audit
 
 Contact: **drew@ddx.network**
 
